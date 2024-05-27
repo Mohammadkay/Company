@@ -44,15 +44,15 @@ namespace Repository.Common
 
         public T Find(Expression<Func<T, bool>> filter, string? includes = null)
         {
-            IQueryable<T> q = _context.Set<T>().AsNoTracking().Where(filter);
+            IQueryable<T> dbquery = _context.Set<T>().AsNoTracking().Where(filter);
             if (includes != null)
             {
                 foreach (var item in includes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    q = q.Include(item);
+                    dbquery = q.Include(item);
                 }
             }
-            return q.AsNoTracking().FirstOrDefault();
+            return dbquery.AsNoTracking();
         }
 
         public IQueryable<T> GetAll()
@@ -70,7 +70,7 @@ namespace Repository.Common
             _context.Set<T>().Update(entity);
         }
         public T  Get(int id) {
-            return _context.Set<T>().Find(id);
+            return _context.Set<T>().AsNoTracking.Where(entity=>entity.Id==id).FirstOrDefault();
         }
     }
 }
