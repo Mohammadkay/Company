@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Domain.Common;
+using System;
 using System.Collections.Generic;
 
-namespace Migrations.Models;
+namespace Domain.Models;
 
-public partial class Service
+public partial class Service : BaseModel
 {
     public long Id { get; set; }
 

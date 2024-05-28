@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company", "Company\Company.csproj", "{3B12BE46-1DC7-4C1F-B6C4-5F8C9B3D6E06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company", "Company\Company.csproj", "{3B12BE46-1DC7-4C1F-B6C4-5F8C9B3D6E06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Migrations\Migrations.csproj", "{08FD861A-5E1A-42D9-95A2-77DAFFB9C37C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Migrations", "Migrations\Migrations.csproj", "{08FD861A-5E1A-42D9-95A2-77DAFFB9C37C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{1B24909E-6944-4D61-BE6B-54A7A530D877}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{1B24909E-6944-4D61-BE6B-54A7A530D877}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{E39FC0F6-D4C4-4C28-B9A9-11E04D425DDA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{7F928539-72DF-466E-9B2A-2700EC386019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{7F928539-72DF-466E-9B2A-2700EC386019}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{1B24909E-6944-4D61-BE6B-54A7A530D877}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B24909E-6944-4D61-BE6B-54A7A530D877}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B24909E-6944-4D61-BE6B-54A7A530D877}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E39FC0F6-D4C4-4C28-B9A9-11E04D425DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E39FC0F6-D4C4-4C28-B9A9-11E04D425DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E39FC0F6-D4C4-4C28-B9A9-11E04D425DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E39FC0F6-D4C4-4C28-B9A9-11E04D425DDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F928539-72DF-466E-9B2A-2700EC386019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F928539-72DF-466E-9B2A-2700EC386019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F928539-72DF-466E-9B2A-2700EC386019}.Release|Any CPU.ActiveCfg = Release|Any CPU

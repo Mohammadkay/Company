@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
-namespace Migrations.Models;
+namespace Domain.Models;
 
 public partial class ZzV10Context : DbContext
 {

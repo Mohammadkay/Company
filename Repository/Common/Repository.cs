@@ -1,7 +1,7 @@
 ﻿using Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using Migrations.Models;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,70 +21,90 @@ namespace Repository.Common
             _context = context;
         }
 
-        public void Add(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            _context.Set<T>().Add(entity);
-            SaveChanges();
+            entity.CreationDate = DateTime.Now;
+            await _context.Set<T>().AddAsync(entity);
+            await SaveChangesAsync();
+            return entity;
         }
 
-        public void AddRange(IEnumerable<T> entities)
+        public async Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities)
         {
-            _context.Set<T>().AddRange(entities);
-            SaveChanges();
+            foreach (var entity in entities)
+            {
+                entity.CreationDate = DateTime.Now;
+            }
+            await _context.Set<T>().AddRangeAsync(entities);
+            await SaveChangesAsync();
+            return entities;
         }
 
-        public void Delete(T entity)
+        public async Task<T> RemoveAsync(T entity)
         {
             _context.Set<T>().Remove(entity);
-            SaveChanges();
+            await SaveChangesAsync();
+            return entity;
         }
 
-        public void DeleteRange(IEnumerable<T> entities)
+        public async Task<IEnumerable<T>> DeleteRangeAsync(IEnumerable<T> entities)
         {
             _context.Set<T>().RemoveRange(entities);
-            SaveChanges();
+            await SaveChangesAsync();
+            return entities;
         }
 
         public IQueryable<T> Find(Expression<Func<T, bool>> filter, string? includes = null)
         {
-            IQueryable<T> dbquery = _context.Set<T>().AsNoTracking().Where(filter);
-            if (includes != null)
+            IQueryable<T> query = _context.Set<T>().AsNoTracking().Where(filter);
+            if (!string.IsNullOrEmpty(includes))
             {
-                foreach (var item in includes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var include in includes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    dbquery = dbquery.Include(item);
+                    query = query.Include(include);
                 }
             }
-            return dbquery;
+            return query;
         }
 
         public IQueryable<T> GetAll()
         {
-           return _context.Set<T>().AsNoTracking();
+            return _context.Set<T>().AsNoTracking();
         }
 
-        public void SaveChanges()
+        public async Task SaveChangesAsync()
         {
-          _context.SaveChanges();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log the exception
+                throw new Exception("An error occurred while updating the database.", ex);
+            }
         }
 
-        public void Update(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
             _context.Set<T>().Update(entity);
+            await SaveChangesAsync();
+            return entity;
         }
-        public T  Get(int id) {
-            return _context.Set<T>().AsNoTracking().Where(entity=>entity.Id==id).FirstOrDefault();
-        }
-        public IQueryable<T> Filter(Expression<Func<T, bool>> where, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
-        {
-            var query = _context.Set<T>().AsNoTracking();
 
+        public async Task<T> GetAsync(int id)
+        {
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(entity => entity.Id == id);
+        }
+
+        public IQueryable<T> Filter(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        {
+            IQueryable<T> query = _context.Set<T>().AsNoTracking();
             if (include != null)
             {
                 query = include(query);
             }
-
-            return query.Where(where);
+            return query.Where(predicate);
         }
     }
 }

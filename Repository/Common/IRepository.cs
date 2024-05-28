@@ -10,16 +10,16 @@ namespace Repository.Common
 {
     public interface IRepository<T> where T : class
     {
+        Task<T> AddAsync(T entity);
+        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
+        Task<T> RemoveAsync(T entity);
         IQueryable<T> GetAll();
-        T Get(int id);
-        public IQueryable<T> Find(Expression<Func<T, bool>> filter, string? includes = null);
-        void Delete(T entity);
-        void Update(T entity);
-        void Add(T entity);
-        void AddRange(IEnumerable<T> entities);
-        void DeleteRange(IEnumerable<T> entities);
+        Task<IEnumerable<T>> DeleteRangeAsync(IEnumerable<T> entities);
+        Task<T> UpdateAsync(T entity);
+        Task<T> GetAsync(int id);
+        IQueryable<T> Find(Expression<Func<T, bool>> filter, string? includes = null);
         IQueryable<T> Filter(Expression<Func<T, bool>> where, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
-        void SaveChanges();
+        Task SaveChangesAsync();
 
     }
 }
