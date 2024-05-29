@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
-    public class AttachmentIRepository : Repository<Attachment>, IAttachmentIRepository
+    public class AttachmentRepository : Repository<Attachment>, IAttachmentIRepository
     {
-        public AttachmentIRepository(ZzV10Context context) : base(context)
+        public AttachmentRepository(ZzV10Context context) : base(context)
         {
         }
     }

@@ -13,7 +13,13 @@ public partial class Order
 
     public string? Description { get; set; }
 
-    public DateTime CreationDate { get; set; }
+    public DateTime? CreationDate { get; set; }
+
+    public string? CreationUser { get; set; }
+
+    public string? ModificationUser { get; set; }
+
+    public DateTime? ModificationDate { get; set; }
 
     public virtual Service? Service { get; set; }
 

@@ -13,5 +13,13 @@ public partial class User
 
     public string? PhoneNumber { get; set; }
 
+    public DateTime? CreationDate { get; set; }
+
+    public string? CreationUser { get; set; }
+
+    public string? ModificationUser { get; set; }
+
+    public DateTime? ModificationDate { get; set; }
+
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

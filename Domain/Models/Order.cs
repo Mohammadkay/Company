@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Domain.Models;
 
-public partial class Order : BaseModel
+public partial class Order:BaseModel
 {
-    public long Id { get; set; }
+
 
     public long? UserId { get; set; }
 
@@ -14,7 +14,6 @@ public partial class Order : BaseModel
 
     public string? Description { get; set; }
 
-    public DateTime CreationDate { get; set; }
 
     public virtual Service? Service { get; set; }
 

@@ -28,7 +28,7 @@ public partial class ZzV10Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=kayyali1;database=ZZ_V1.0", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.37-mysql"));
+        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=Eska@123;database=zz_v1.0", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,7 +44,9 @@ public partial class ZzV10Context : DbContext
 
             entity.Property(e => e.AttachmentData).HasColumnType("blob");
             entity.Property(e => e.CreationDate).HasColumnType("datetime");
-            entity.Property(e => e.CreationUser).HasMaxLength(255);
+            entity.Property(e => e.CreationUser).HasMaxLength(100);
+            entity.Property(e => e.ModificationDate).HasColumnType("datetime");
+            entity.Property(e => e.ModificationUser).HasMaxLength(100);
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -58,6 +60,9 @@ public partial class ZzV10Context : DbContext
             entity.HasIndex(e => e.UserId, "fk_Order_UserId");
 
             entity.Property(e => e.CreationDate).HasColumnType("datetime");
+            entity.Property(e => e.CreationUser).HasMaxLength(100);
+            entity.Property(e => e.ModificationDate).HasColumnType("datetime");
+            entity.Property(e => e.ModificationUser).HasMaxLength(100);
 
             entity.HasOne(d => d.Service).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.ServiceId)
@@ -72,8 +77,12 @@ public partial class ZzV10Context : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("service");
+            entity.ToTable("services");
 
+            entity.Property(e => e.CreationDate).HasColumnType("datetime");
+            entity.Property(e => e.CreationUser).HasMaxLength(100);
+            entity.Property(e => e.ModificationDate).HasColumnType("datetime");
+            entity.Property(e => e.ModificationUser).HasMaxLength(100);
             entity.Property(e => e.ServiceName1).HasMaxLength(255);
             entity.Property(e => e.ServiceName2).HasMaxLength(255);
         });
@@ -86,8 +95,12 @@ public partial class ZzV10Context : DbContext
 
             entity.HasIndex(e => e.ServiceId, "fk_ServiceId");
 
+            entity.Property(e => e.CreationDate).HasColumnType("datetime");
+            entity.Property(e => e.CreationUser).HasMaxLength(100);
             entity.Property(e => e.Details1).HasMaxLength(5000);
             entity.Property(e => e.Details2).HasMaxLength(5000);
+            entity.Property(e => e.ModificationDate).HasColumnType("datetime");
+            entity.Property(e => e.ModificationUser).HasMaxLength(100);
 
             entity.HasOne(d => d.Service).WithMany(p => p.Servicedetails)
                 .HasForeignKey(d => d.ServiceId)
@@ -98,9 +111,13 @@ public partial class ZzV10Context : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("user");
+            entity.ToTable("users");
 
+            entity.Property(e => e.CreationDate).HasColumnType("datetime");
+            entity.Property(e => e.CreationUser).HasMaxLength(100);
             entity.Property(e => e.Email).HasMaxLength(255);
+            entity.Property(e => e.ModificationDate).HasColumnType("datetime");
+            entity.Property(e => e.ModificationUser).HasMaxLength(100);
             entity.Property(e => e.PhoneNumber).HasMaxLength(20);
             entity.Property(e => e.UserName).HasMaxLength(255);
         });

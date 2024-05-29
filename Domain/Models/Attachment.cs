@@ -6,7 +6,7 @@ namespace Domain.Models;
 
 public partial class Attachment:BaseModel
 {
-    public long Id { get; set; }
+
 
     public byte[] AttachmentData { get; set; } = null!;
 
@@ -14,7 +14,5 @@ public partial class Attachment:BaseModel
 
     public long ObjectId { get; set; }
 
-    public string? CreationUser { get; set; }
 
-    public DateTime? CreationDate { get; set; }
 }

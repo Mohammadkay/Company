@@ -8,53 +8,53 @@ namespace Company.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly IServiceUnitOfWork _serviceUnitOfWork;
 
-        public UserController(IServiceUnitOfWork serviceUnitOfWork)
+        public OrderController(IServiceUnitOfWork serviceUnitOfWork)
         {
             _serviceUnitOfWork = serviceUnitOfWork;
         }
 
         [HttpGet]
-        public IResponseResult<IEnumerable<User>> GetAll()
+        public IResponseResult<IEnumerable<Order>> GetAll()
         {
             using (_serviceUnitOfWork)
             {
-                return _serviceUnitOfWork.Users.Value.GetAll();
+                return _serviceUnitOfWork.Orders.Value.GetAll();
             }
         }
         [HttpGet("Id")]
-        public async Task<IResponseResult<User>> GetById(long Id)
+        public async Task<IResponseResult<Order>> GetById(long Id)
         {
             using (_serviceUnitOfWork)
             {
-                return await _serviceUnitOfWork.Users.Value.GetByIdAsync(Id);
+                return await _serviceUnitOfWork.Orders.Value.GetByIdAsync(Id);
             }
         }
         [HttpDelete("Id")]
-        public async Task<IResponseResult<User>> Remove(long Id)
+        public async Task<IResponseResult<Order>> Remove(long Id)
         {
             using (_serviceUnitOfWork)
             {
-                return await _serviceUnitOfWork.Users.Value.RemoveAsync(new User() { Id=Id});
+                return await _serviceUnitOfWork.Orders.Value.RemoveAsync(new Order() { Id = Id });
             }
         }
         [HttpPut]
-        public async Task<IResponseResult<User>> Update(User entity)
+        public async Task<IResponseResult<Order>> Update(Order entity)
         {
             using (_serviceUnitOfWork)
             {
-                return await _serviceUnitOfWork.Users.Value.UpdateAsync(entity);
+                return await _serviceUnitOfWork.Orders.Value.UpdateAsync(entity);
             }
         }
         [HttpPost]
-        public async Task<IResponseResult<User>> Add(User entity)
+        public async Task<IResponseResult<Order>> Add(Order entity)
         {
             using (_serviceUnitOfWork)
             {
-                return await _serviceUnitOfWork.Users.Value.AddAsync(entity);
+                return await _serviceUnitOfWork.Orders.Value.AddAsync(entity);
             }
         }
     }

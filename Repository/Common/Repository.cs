@@ -47,7 +47,7 @@ namespace Repository.Common
             return entity;
         }
 
-        public async Task<IEnumerable<T>> DeleteRangeAsync(IEnumerable<T> entities)
+        public async Task<IEnumerable<T>> RemoveRangeAsync(IEnumerable<T> entities)
         {
             _context.Set<T>().RemoveRange(entities);
             await SaveChangesAsync();
@@ -92,7 +92,7 @@ namespace Repository.Common
             return entity;
         }
 
-        public async Task<T> GetAsync(int id)
+        public async Task<T> GetAsync(long id)
         {
             return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(entity => entity.Id == id);
         }

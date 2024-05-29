@@ -9,7 +9,7 @@ namespace Domain.enums
     public enum ResultStatus
     {
         Failed = 0,
-        Succeeded = 1,
+        Success = 1,
 
     }
 

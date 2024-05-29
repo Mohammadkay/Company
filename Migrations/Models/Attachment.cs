@@ -13,7 +13,11 @@ public partial class Attachment
 
     public long ObjectId { get; set; }
 
+    public DateTime? CreationDate { get; set; }
+
     public string? CreationUser { get; set; }
 
-    public DateTime? CreationDate { get; set; }
+    public string? ModificationUser { get; set; }
+
+    public DateTime? ModificationDate { get; set; }
 }

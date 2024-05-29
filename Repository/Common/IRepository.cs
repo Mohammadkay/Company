@@ -14,11 +14,11 @@ namespace Repository.Common
         Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
         Task<T> RemoveAsync(T entity);
         IQueryable<T> GetAll();
-        Task<IEnumerable<T>> DeleteRangeAsync(IEnumerable<T> entities);
+        Task<IEnumerable<T>> RemoveRangeAsync(IEnumerable<T> entities);
         Task<T> UpdateAsync(T entity);
-        Task<T> GetAsync(int id);
+        Task<T> GetAsync(long id);
         IQueryable<T> Find(Expression<Func<T, bool>> filter, string? includes = null);
-        IQueryable<T> Filter(Expression<Func<T, bool>> where, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        IQueryable<T> Filter(Expression<Func<T, bool>> where, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
         Task SaveChangesAsync();
 
     }

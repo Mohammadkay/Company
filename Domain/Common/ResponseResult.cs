@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Common
 {
-    public class ResponseResult : IResponseResult
+    public class ResponseResult<Model> : IResponseResult<Model>
     {
         public ResultStatus status { get ; set ; }
         public string Error { get ; set ; }
-        public object Data { get ; set ; }
+        public Model Data { get ; set ; }
+        public long TotalRecord { get ; set ; }
     }
 }

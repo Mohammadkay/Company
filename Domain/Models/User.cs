@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Domain.Models;
 
-public partial class User :BaseModel
+public partial class User:BaseModel
 {
-    public long Id { get; set; }
+
 
     public string? UserName { get; set; }
 
