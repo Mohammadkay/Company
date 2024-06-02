@@ -7,8 +7,6 @@ public partial class Attachment
 {
     public long Id { get; set; }
 
-    public byte[]? AttachmentData { get; set; }
-
     public DateTime? CreationDate { get; set; }
 
     public string? CreationUser { get; set; }
@@ -20,4 +18,6 @@ public partial class Attachment
     public long? ObjectType { get; set; }
 
     public long? ObjectId { get; set; }
+
+    public string? AttachmentPath { get; set; }
 }

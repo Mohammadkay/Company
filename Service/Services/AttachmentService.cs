@@ -1,11 +1,13 @@
 ﻿using Domain.Common;
 using Domain.enums;
 using Domain.Models;
+using Microsoft.AspNetCore.Http;
 using Repository.Common;
 using Repository.UnitOfWork;
 using Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -173,6 +175,43 @@ namespace Service.Services
                 };
             }
         }
+        public async Task<IResponseResult<Attachment>> Upload(IFormFile file, long? objectType,  long? objectId)
+        {
+            try
+            {
+                var path = Path.Combine(SharedSettinges.FilePath, file.FileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                Attachment entity = new Attachment()
+                {
+                    AttachmentPath=path,
+                    ObjectId=objectId,
+                    ObjectType=objectType
+                };
+                var response=await _repositoryUnitOfWork.Attachments.Value.AddAsync(entity);
+                return new ResponseResult<Attachment>()
+                {
+                    status = ResultStatus.Success,
+                    Data = response
+
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResponseResult<Attachment>()
+                {
+                    status = ResultStatus.Failed,
+                    Error = "The Error is " + ex.Message + "The inner Exception" + ex.InnerException,
+                };
+
+            }
+
+        }
+    
     }
 }
 

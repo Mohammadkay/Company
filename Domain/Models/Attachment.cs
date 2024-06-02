@@ -8,7 +8,7 @@ public partial class Attachment :BaseModel
 {
 
 
-    public byte[]? AttachmentData { get; set; }
+    public string? AttachmentPath { get; set; }
 
     public long? ObjectType { get; set; }
 

@@ -1,5 +1,4 @@
 ﻿using Domain.Models;
-using Migrations.Models;
 using Repository.UnitOfWork;
 using Service.Interfaces;
 using Service.Services;
@@ -18,7 +17,7 @@ namespace Service.ServiceUnitOfWork
         public Lazy<IServices> Services { get; set; }
         public Lazy<IServiceDetailsService> ServicesDetails { get; set; }
         public Lazy<IOrdersService> Orders { get; set; }
-
+        public Lazy<IAttachmentService> Attachment { get; set; }
         public ServiceUnitOfWork(ZzV10Context context)
         {
             _repositoryUnitOfWork =new  RepositoryUnitOfWork(context);
@@ -26,7 +25,8 @@ namespace Service.ServiceUnitOfWork
             Users=new Lazy<IUserService>(()=>new UserService(_repositoryUnitOfWork));
             Services = new Lazy<IServices>(() => new Service.Services.Service(_repositoryUnitOfWork));
             ServicesDetails=new Lazy<IServiceDetailsService>(()=> new ServiceDetailsService(_repositoryUnitOfWork));
-            Orders=new Lazy<IOrdersService>(()=>new OrdersService(_repositoryUnitOfWork)); 
+            Orders=new Lazy<IOrdersService>(()=>new OrdersService(_repositoryUnitOfWork));
+            Attachment=new Lazy<IAttachmentService>(()=>new AttachmentService(_repositoryUnitOfWork));  
         }
 
         public void Dispose()

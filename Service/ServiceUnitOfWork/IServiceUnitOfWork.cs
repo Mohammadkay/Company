@@ -1,4 +1,5 @@
 ﻿using Service.Interfaces;
+using Service.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Service.ServiceUnitOfWork
         Lazy<IServices> Services { get; set; }
         Lazy<IServiceDetailsService> ServicesDetails { get; set; }
         Lazy<IOrdersService> Orders { get; set; }
+        Lazy<IAttachmentService> Attachment { get; set; }
     }
 }

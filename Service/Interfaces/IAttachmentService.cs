@@ -1,4 +1,6 @@
-﻿using Domain.Models;
+﻿using Domain.Common;
+using Domain.Models;
+using Microsoft.AspNetCore.Http;
 using Service.Common;
 using System;
 using System.Collections.Generic;
@@ -10,5 +12,6 @@ namespace Service.Interfaces
 {
     public interface IAttachmentService: IService<Attachment>
     {
+        Task<IResponseResult<Attachment>> Upload(IFormFile file, long? objectType,long? objectId);
     }
 }

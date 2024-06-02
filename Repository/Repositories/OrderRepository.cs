@@ -1,5 +1,4 @@
 ﻿using Domain.Models;
-using Migrations.Models;
 using Repository.Common;
 using Repository.Interface;
 using System;

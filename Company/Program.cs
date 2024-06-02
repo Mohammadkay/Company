@@ -3,7 +3,8 @@ using Microsoft.Extensions.Options;
 using Domain.Models;
 using Service.ServiceUnitOfWork;
 using Repository.UnitOfWork;
-using Migrations.Models;
+using Domain.Common;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IServiceUnitOfWork, ServiceUnitOfWork>();
 builder.Services.AddDbContext<ZzV10Context>();
+#region Configration
+var config=builder.Configuration;
+
+SharedSettinges.FilePath = config.GetSection("SharedSettinges").GetValue<string>("FilePath");
+
+
+
+#endregion
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

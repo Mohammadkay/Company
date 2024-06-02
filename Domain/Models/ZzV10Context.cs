@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
-namespace Migrations.Models;
+namespace Domain.Models;
 
 public partial class ZzV10Context : DbContext
 {
@@ -29,7 +28,7 @@ public partial class ZzV10Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=kayyali1;database=zz_v1.0", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.37-mysql"));
+        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=Eska@123;database=zz_v1.0", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -43,8 +42,8 @@ public partial class ZzV10Context : DbContext
 
             entity.ToTable("attachments");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.AttachmentData).HasColumnType("blob");
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AttachmentPath).HasColumnType("text");
             entity.Property(e => e.CreationDate).HasColumnType("datetime");
             entity.Property(e => e.CreationUser).HasMaxLength(100);
             entity.Property(e => e.ModificationDate).HasColumnType("datetime");
