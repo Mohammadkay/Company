@@ -18,15 +18,15 @@ namespace Company.Controllers
         }
 
         [HttpGet]
-        public IResponseResult<IEnumerable<Domain.Models.Service>> GetAll()
+        public IResponseResult<IEnumerable<CpService>> GetAll()
         {
             using (_serviceUnitOfWork)
             {
                 return _serviceUnitOfWork.Services.Value.GetAll();
-            }
+            } 
         }
         [HttpGet("Id")]
-        public async Task<IResponseResult<Domain.Models.Service>> GetById(long Id)
+        public async Task<IResponseResult<CpService>> GetById(long Id)
         {
             using (_serviceUnitOfWork)
             {
@@ -34,15 +34,15 @@ namespace Company.Controllers
             }
         }
         [HttpDelete("Id")]
-        public async Task<IResponseResult<Domain.Models.Service>> Remove(long Id)
+        public async Task<IResponseResult<CpService>> Remove(long Id)
         {
             using (_serviceUnitOfWork)
             {
-                return await _serviceUnitOfWork.Services.Value.RemoveAsync(new Domain.Models.Service() { Id = Id });
+                return await _serviceUnitOfWork.Services.Value.RemoveAsync(new CpService() { Id = Id });
             }
         }
         [HttpPut]
-        public async Task<IResponseResult<Domain.Models.Service>> Update(Domain.Models.Service entity)
+        public async Task<IResponseResult<CpService>> Update(CpService entity)
         {
             using (_serviceUnitOfWork)
             {
@@ -50,7 +50,7 @@ namespace Company.Controllers
             }
         }
         [HttpPost]
-        public async Task<IResponseResult<Domain.Models.Service>> Add(Domain.Models.Service entity)
+        public async Task<IResponseResult<CpService>> Add(CpService entity)
         {
             using (_serviceUnitOfWork)
             {

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Domain.Models;
 using Service.ServiceUnitOfWork;
 using Repository.UnitOfWork;
+using Migrations.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -18,7 +18,7 @@ namespace Company.Controllers
         }
 
         [HttpGet]
-        public IResponseResult<IEnumerable<Servicedetail>> GetAll()
+        public IResponseResult<IEnumerable<ServiceDetail>> GetAll()
         {
             using (_serviceUnitOfWork)
             {
@@ -26,7 +26,7 @@ namespace Company.Controllers
             }
         }
         [HttpGet("Id")]
-        public async Task<IResponseResult<Servicedetail>> GetById(long Id)
+        public async Task<IResponseResult<ServiceDetail>> GetById(long Id)
         {
             using (_serviceUnitOfWork)
             {
@@ -34,15 +34,15 @@ namespace Company.Controllers
             }
         }
         [HttpDelete("Id")]
-        public async Task<IResponseResult<Servicedetail>> Remove(long Id)
+        public async Task<IResponseResult<ServiceDetail>> Remove(long Id)
         {
             using (_serviceUnitOfWork)
             {
-                return await _serviceUnitOfWork.ServicesDetails.Value.RemoveAsync(new Servicedetail() { Id = Id });
+                return await _serviceUnitOfWork.ServicesDetails.Value.RemoveAsync(new ServiceDetail() { Id = Id });
             }
         }
         [HttpPut]
-        public async Task<IResponseResult<Servicedetail>> Update(Servicedetail entity)
+        public async Task<IResponseResult<ServiceDetail>> Update(ServiceDetail entity)
         {
             using (_serviceUnitOfWork)
             {
@@ -50,7 +50,7 @@ namespace Company.Controllers
             }
         }
         [HttpPost]
-        public async Task<IResponseResult<Servicedetail>> Add(Servicedetail entity)
+        public async Task<IResponseResult<ServiceDetail>> Add(ServiceDetail entity)
         {
             using (_serviceUnitOfWork)
             {

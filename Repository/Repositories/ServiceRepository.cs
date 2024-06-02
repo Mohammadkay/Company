@@ -1,5 +1,5 @@
 ﻿using Domain.Models;
-
+using Migrations.Models;
 using Repository.Common;
 using Repository.Interface;
 using System;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
-    public class ServiceRepository : Repository<Service>, IServiceRepository
+    public class ServiceRepository : Repository<CpService>, IServiceRepository
     {
         private ZzV10Context _context;
         public ServiceRepository(ZzV10Context context) : base(context)

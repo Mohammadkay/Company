@@ -34,7 +34,7 @@ namespace Company.Controllers
             }
         }
         [HttpDelete("Id")]
-        public async Task<IResponseResult<User>> Remove(long Id)
+        public async Task<IResponseResult<User>> Remove(int  Id)
         {
             using (_serviceUnitOfWork)
             {

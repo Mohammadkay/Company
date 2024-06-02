@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Migrations.Models;
 using Repository.UnitOfWork;
 using Service.Interfaces;
 using Service.Services;

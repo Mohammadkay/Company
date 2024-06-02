@@ -7,17 +7,17 @@ public partial class Attachment
 {
     public long Id { get; set; }
 
-    public byte[] AttachmentData { get; set; } = null!;
-
-    public long ObjectType { get; set; }
-
-    public long ObjectId { get; set; }
+    public byte[]? AttachmentData { get; set; }
 
     public DateTime? CreationDate { get; set; }
 
     public string? CreationUser { get; set; }
 
+    public DateTime? ModificationDate { get; set; }
+
     public string? ModificationUser { get; set; }
 
-    public DateTime? ModificationDate { get; set; }
+    public long? ObjectType { get; set; }
+
+    public long? ObjectId { get; set; }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Service.Interfaces
 {
-    public interface IServiceDetailsService:IService<ServiceDetail>
+    public interface IAttachmentService: IService<Attachment>
     {
     }
 }

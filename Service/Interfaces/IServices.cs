@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Service.Interfaces
 {
-    public interface IServices: IService<Domain.Models.Service>
+    public interface IServices: IService<CpService>
     {
     }
 }

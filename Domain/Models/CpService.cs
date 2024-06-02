@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Domain.Models;
 
-public partial class Service:BaseModel
+public partial class CpService :BaseModel
 {
 
 
@@ -12,8 +12,7 @@ public partial class Service:BaseModel
 
     public string? ServiceName2 { get; set; }
 
-
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
-    public virtual ICollection<Servicedetail> Servicedetails { get; set; } = new List<Servicedetail>();
+    public virtual ICollection<ServiceDetail> ServiceDetails { get; set; } = new List<ServiceDetail>();
 }

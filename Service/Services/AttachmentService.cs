@@ -1,6 +1,7 @@
 ﻿using Domain.Common;
 using Domain.enums;
 using Domain.Models;
+using Repository.Common;
 using Repository.UnitOfWork;
 using Service.Interfaces;
 using System;
@@ -11,19 +12,20 @@ using System.Threading.Tasks;
 
 namespace Service.Services
 {
-    public class ServiceDetailsService : IServiceDetailsService
+    public class AttachmentService : IAttachmentService
     {
         private IRepositoryUnitOfWork _repositoryUnitOfWork;
-        public ServiceDetailsService(IRepositoryUnitOfWork repositoryUnitOfWork)
+
+        public AttachmentService(IRepositoryUnitOfWork repositoryUnitOfWork)
         {
-            _repositoryUnitOfWork = repositoryUnitOfWork;
+            _repositoryUnitOfWork=repositoryUnitOfWork;
         }
-        public async Task<IResponseResult<ServiceDetail>> AddAsync(ServiceDetail model)
+        public async Task<IResponseResult<Attachment>> AddAsync(Attachment model)
         {
             try
             {
-                await _repositoryUnitOfWork.ServiceDetails.Value.AddAsync(model);
-                return new ResponseResult<ServiceDetail>()
+                await _repositoryUnitOfWork.Attachments.Value.AddAsync(model);
+                return new ResponseResult<Attachment>()
                 {
                     status = ResultStatus.Success,
                     Data = model,
@@ -32,7 +34,7 @@ namespace Service.Services
             }
             catch (Exception ex)
             {
-                return new ResponseResult<ServiceDetail>()
+                return new ResponseResult<Attachment>()
                 {
                     status = ResultStatus.Failed,
                     Error = "The Error is " + ex.Message + "The inner Exception" + ex.InnerException,
@@ -41,13 +43,13 @@ namespace Service.Services
 
         }
 
-        public async Task<IResponseResult<IEnumerable<ServiceDetail>>> AddRangeAsync(IEnumerable<ServiceDetail> model)
+        public async Task<IResponseResult<IEnumerable<Attachment>>> AddRangeAsync(IEnumerable<Attachment> model)
         {
             try
             {
-                var response = await _repositoryUnitOfWork.ServiceDetails.Value.AddRangeAsync(model);
+                var response = await _repositoryUnitOfWork.Attachments.Value.AddRangeAsync(model);
 
-                return new ResponseResult<IEnumerable<ServiceDetail>>()
+                return new ResponseResult<IEnumerable<Attachment>>()
                 {
                     status = ResultStatus.Success,
                     Data = response,
@@ -56,7 +58,7 @@ namespace Service.Services
             }
             catch (Exception ex)
             {
-                return new ResponseResult<IEnumerable<ServiceDetail>>()
+                return new ResponseResult<IEnumerable<Attachment>>()
                 {
                     status = ResultStatus.Failed,
                     Error = "The Error is " + ex.Message + "The inner Exception" + ex.InnerException,
@@ -64,12 +66,12 @@ namespace Service.Services
             }
         }
 
-        public IResponseResult<IEnumerable<ServiceDetail>> GetAll()
+        public IResponseResult<IEnumerable<Attachment>> GetAll()
         {
             try
             {
-                var response = _repositoryUnitOfWork.ServiceDetails.Value.GetAll();
-                return new ResponseResult<IEnumerable<ServiceDetail>>()
+                var response = _repositoryUnitOfWork.Attachments.Value.GetAll();
+                return new ResponseResult<IEnumerable<Attachment>>()
                 {
                     status = ResultStatus.Success,
                     Data = response,
@@ -78,7 +80,7 @@ namespace Service.Services
             }
             catch (Exception ex)
             {
-                return new ResponseResult<IEnumerable<ServiceDetail>>()
+                return new ResponseResult<IEnumerable<Attachment>>()
                 {
                     status = ResultStatus.Failed,
                     Error = "The Error is " + ex.Message + "The inner Exception" + ex.InnerException,
@@ -86,12 +88,12 @@ namespace Service.Services
             }
         }
 
-        public async Task<IResponseResult<ServiceDetail>> GetByIdAsync(long id)
+        public async Task<IResponseResult<Attachment>> GetByIdAsync(long id)
         {
             try
             {
-                var response = await _repositoryUnitOfWork.ServiceDetails.Value.GetAsync(id);
-                return new ResponseResult<ServiceDetail>()
+                var response = await _repositoryUnitOfWork.Attachments.Value.GetAsync(id);
+                return new ResponseResult<Attachment>()
                 {
                     status = ResultStatus.Success,
                     Data = response,
@@ -99,7 +101,7 @@ namespace Service.Services
             }
             catch (Exception ex)
             {
-                return new ResponseResult<ServiceDetail>()
+                return new ResponseResult<Attachment>()
                 {
                     status = ResultStatus.Failed,
                     Error = "The Error is " + ex.Message + "The inner Exception" + ex.InnerException,
@@ -107,12 +109,12 @@ namespace Service.Services
             }
         }
 
-        public async Task<IResponseResult<ServiceDetail>> RemoveAsync(ServiceDetail model)
+        public async Task<IResponseResult<Attachment>> RemoveAsync(Attachment model)
         {
             try
             {
-                var response = await _repositoryUnitOfWork.ServiceDetails.Value.RemoveAsync(model);
-                return new ResponseResult<ServiceDetail>()
+                var response = await _repositoryUnitOfWork.Attachments.Value.RemoveAsync(model);
+                return new ResponseResult<Attachment>()
                 {
                     status = ResultStatus.Success,
                     Data = response,
@@ -120,7 +122,7 @@ namespace Service.Services
             }
             catch (Exception ex)
             {
-                return new ResponseResult<ServiceDetail>()
+                return new ResponseResult<Attachment>()
                 {
                     status = ResultStatus.Failed,
                     Error = "The Error is " + ex.Message + "The inner Exception" + ex.InnerException,
@@ -128,12 +130,12 @@ namespace Service.Services
             }
         }
 
-        public async Task<IResponseResult<IEnumerable<ServiceDetail>>> RemoveRangeAsync(IEnumerable<ServiceDetail> model)
+        public async Task<IResponseResult<IEnumerable<Attachment>>> RemoveRangeAsync(IEnumerable<Attachment> model)
         {
             try
             {
-                await _repositoryUnitOfWork.ServiceDetails.Value.RemoveRangeAsync(model);
-                return new ResponseResult<IEnumerable<ServiceDetail>>()
+                await _repositoryUnitOfWork.Attachments.Value.RemoveRangeAsync(model);
+                return new ResponseResult<IEnumerable<Attachment>>()
                 {
                     status = ResultStatus.Success,
                     Data = model
@@ -142,7 +144,7 @@ namespace Service.Services
             }
             catch (Exception ex)
             {
-                return new ResponseResult<IEnumerable<ServiceDetail>>()
+                return new ResponseResult<IEnumerable<Attachment>>()
                 {
                     status = ResultStatus.Failed,
                     Error = "The Error is " + ex.Message + "The inner Exception" + ex.InnerException,
@@ -150,12 +152,12 @@ namespace Service.Services
             }
         }
 
-        public async Task<IResponseResult<ServiceDetail>> UpdateAsync(ServiceDetail model)
+        public async Task<IResponseResult<Attachment>> UpdateAsync(Attachment model)
         {
             try
             {
-                var response = await _repositoryUnitOfWork.ServiceDetails.Value.UpdateAsync(model);
-                return new ResponseResult<ServiceDetail>()
+                var response = await _repositoryUnitOfWork.Attachments.Value.UpdateAsync(model);
+                return new ResponseResult<Attachment>()
                 {
                     status = ResultStatus.Success,
                     Data = response
@@ -164,7 +166,7 @@ namespace Service.Services
             }
             catch (Exception ex)
             {
-                return new ResponseResult<ServiceDetail>()
+                return new ResponseResult<Attachment>()
                 {
                     status = ResultStatus.Failed,
                     Error = "The Error is " + ex.Message + "The inner Exception" + ex.InnerException,

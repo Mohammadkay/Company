@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Interface
 {
-    public interface IServiceDetailRepository:IRepository<Servicedetail>
+    public interface IServiceDetailRepository:IRepository<ServiceDetail>
     {
     }
 }

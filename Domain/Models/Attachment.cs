@@ -4,15 +4,13 @@ using System.Collections.Generic;
 
 namespace Domain.Models;
 
-public partial class Attachment:BaseModel
+public partial class Attachment :BaseModel
 {
 
 
-    public byte[] AttachmentData { get; set; } = null!;
+    public byte[]? AttachmentData { get; set; }
 
-    public long ObjectType { get; set; }
+    public long? ObjectType { get; set; }
 
-    public long ObjectId { get; set; }
-
-
+    public long? ObjectId { get; set; }
 }
