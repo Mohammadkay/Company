@@ -1,5 +1,6 @@
 ﻿using Domain.Common;
 using Domain.Models;
+using Domain.Models.SearchByCriteria;
 using Microsoft.AspNetCore.Http;
 using Service.Common;
 using System;
@@ -13,5 +14,6 @@ namespace Service.Interfaces
     public interface IAttachmentService: IService<Attachment>
     {
         Task<IResponseResult<Attachment>> Upload(IFormFile file, long? objectType,long? objectId);
+        IResponseResult<IEnumerable<Attachment>> Search(AttachmentSearch search);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Domain.Common;
 using Domain.enums;
 using Domain.Models;
+using Domain.Models.SearchByCriteria;
 using Microsoft.AspNetCore.Http;
 using Repository.Common;
 using Repository.UnitOfWork;
@@ -209,9 +210,30 @@ namespace Service.Services
                 };
 
             }
-
+        
         }
-    
+        public IResponseResult<IEnumerable<Attachment>> Search(AttachmentSearch search)
+        {
+            try
+            {
+              var response = _repositoryUnitOfWork.Attachments.Value.Find(x => search.ObjectId == x.ObjectId && search.ObjectType == x.ObjectType);
+
+                return new ResponseResult<IEnumerable<Attachment>>()
+                {
+                    status = ResultStatus.Success,
+                    Data = response
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new ResponseResult<IEnumerable<Attachment>>()
+                {
+                    status = ResultStatus.Failed,
+                    Error = "The Error is " + ex.Message + "The inner Exception" + ex.InnerException,
+                };
+            }
+        }
     }
 }
 
